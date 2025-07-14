@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TaskFlow.SettingsPage"
+             Title="SettingsPage">
+    <Grid Margin="20" Padding="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <!-- Header info -->
+        <VerticalStackLayout Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
+            <Label
+                Text="Task Flow"
+                FontSize="Title"
+                FontAttributes="Bold"
+                VerticalOptions="Center" 
+                HorizontalOptions="Center" />
+            <Label
+                Text="Settings"
+                FontSize="Title"
+                FontAttributes="None"
+                VerticalOptions="Center" 
+                HorizontalOptions="Center" />
+        </VerticalStackLayout>
+        
+        <!-- Settings -->
+        <Label Grid.Row="1" Grid.Column="0" Text="In-App Notifications" VerticalOptions="Center"/>
+        <Switch Grid.Row="1" Grid.Column="1" x:Name="Switch_InAppNotifications"/>
+
+        <Label Grid.Row="2" Grid.Column="0" Text="Notifications" VerticalOptions="Center"/>
+        <Switch Grid.Row="2" Grid.Column="1" x:Name="Switch_Notifications"/>
+
+        <Label Grid.Row="3" Grid.Column="0" Text="Location Services" VerticalOptions="Center"/>
+        <Switch Grid.Row="3" Grid.Column="1" x:Name="Switch_LocationServices"/>
+    </Grid>
+</ContentPage>

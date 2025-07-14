@@ -28,6 +28,11 @@
                 Text="Open Todo Page" 
                 Clicked="Btn_OpenTodo_Clicked"
                 HorizontalOptions="Fill" />
+            <Button
+                x:Name="Btn_OpenSettings"
+                Text="Open Settings Page" 
+                Clicked="Btn_OpenSettings_Clicked"
+                HorizontalOptions="Fill" />
         </VerticalStackLayout>
     </ScrollView>
 

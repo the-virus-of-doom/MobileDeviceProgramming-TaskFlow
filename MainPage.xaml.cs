@@ -12,6 +12,11 @@
         {
             Navigation.PushAsync(new TodoPage());
         }
+
+        private void Btn_OpenSettings_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new SettingsPage());
+        }
     }
 
 }
