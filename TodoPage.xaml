@@ -4,9 +4,41 @@
              x:Class="TaskFlow.TodoPage"
              Title="TodoPage">
     <VerticalStackLayout>
+        <!-- Header info -->
         <Label 
-            Text="Welcome to .NET MAUI!"
+            Text="Task Flow"
+            FontSize="Title"
+            FontAttributes="Bold"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
+        <Label 
+            Text="To-dos"
+            FontSize="Title"
+            FontAttributes="None"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+        <!-- List -->
+        <CollectionView
+            x:Name="Cv_TodoList"
+            IsGrouped="False"
+            SelectionMode="Single"
+            SelectionChanged="Cv_TodoList_SelectionChanged">
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout Orientation="Vertical"/>
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <!-- TODO: bind tasks to UserTasks-->
+                    <HorizontalStackLayout Margin="10" Padding="10" Spacing="5">
+                        <!-- checkbox -->
+                        <!-- TODO: replace with icon -->
+                        <Label Text="[x]"/>
+                        <!-- task name -->
+                        <Label Text="Task Name"/>
+                    </HorizontalStackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        
     </VerticalStackLayout>
 </ContentPage>
