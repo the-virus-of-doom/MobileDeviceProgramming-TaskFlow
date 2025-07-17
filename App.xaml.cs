@@ -1,4 +1,6 @@
-﻿namespace TaskFlow
+﻿using Microsoft.Maui.Storage;
+
+namespace TaskFlow
 {
     public partial class App : Application
     {
@@ -6,11 +8,22 @@
         {
             InitializeComponent();
 
-            // Force Light theme
-            Current.UserAppTheme = AppTheme.Light;
-            this.RequestedThemeChanged += (s, e) => { Application.Current.UserAppTheme = AppTheme.Light; };
+            // Check if user is signed in
+            if (Preferences.Get("IsSignedIn", true))
+            {
+                MainPage = new AppShell();
+            }
+            else
+            {
+                MainPage = new NavigationPage(new LoginPage());
+            }
+        }
 
-            MainPage = new AppShell();
+        private async void OnSignOutClicked(object sender, EventArgs e)
+        {
+            Preferences.Set("IsSignedIn", false);
+            Preferences.Remove("CurrentUserEmail");
+            Application.Current.MainPage = new NavigationPage(new LoginPage());
         }
     }
 }

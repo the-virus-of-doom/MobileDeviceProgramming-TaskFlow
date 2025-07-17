@@ -1,0 +1,38 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TaskFlow.HomePage"
+             BackgroundColor="Black">
+    <Grid RowDefinitions="*,Auto">
+        <!-- Main Content -->
+        <Grid>
+            <Label x:Name="UserNameLabel" FontSize="Large" HorizontalOptions="Center" VerticalOptions="Center" />
+
+            <StackLayout VerticalOptions="End" HorizontalOptions="Center" Margin="0,0,0,20" Spacing="10">
+                <Button Text="Sign Out"
+                        Clicked="OnSignOutClicked"
+                        BackgroundColor="Red"
+                        TextColor="White"
+                        WidthRequest="120"/>
+                <Button Text="Delete Account"
+                        Clicked="OnDeleteAccountClicked"
+                        BackgroundColor="Gray"
+                        TextColor="White"
+                        WidthRequest="150"/>
+            </StackLayout>
+        </Grid>
+
+        <!-- Bottom Navigation Bar -->
+        <Grid Grid.Row="1" BackgroundColor="#222" Padding="0,8" ColumnSpacing="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0" Text="Home" BackgroundColor="Transparent" TextColor="White" />
+            <Button Grid.Column="1" Text="Tasks" BackgroundColor="Transparent" TextColor="White" />
+            <Button Grid.Column="2" Text="Calendar" BackgroundColor="Transparent" TextColor="White" />
+            <Button Grid.Column="3" Text="Notes" BackgroundColor="Transparent" TextColor="White" />
+        </Grid>
+    </Grid>
+</ContentPage>
