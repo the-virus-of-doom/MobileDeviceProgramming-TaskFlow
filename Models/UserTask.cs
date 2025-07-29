@@ -13,6 +13,14 @@ namespace TaskFlow.Models
         public DateTime DueDateTime { get; set; }
         public bool IsCompleted { get; set; }
 
+        public UserTask()
+        {
+            Name = "New Task";
+            Description = "default description";
+            DueDateTime = DateTime.Now;
+            IsCompleted = false;
+        }
+
         public UserTask(string name = "New Task", string description = "default description", DateTime dueDateTime = new DateTime(), bool isCompleted  = false) {
             Name = name;
             Description = description;
