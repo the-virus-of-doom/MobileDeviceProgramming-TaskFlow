@@ -10,23 +10,35 @@
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        <Button Text="Home"
-                Clicked="OnHomeClicked"
-                Grid.Column="0"
-				BackgroundColor="Black"
-				TextColor="White"/>
-        <Button Text="Tasks"
-                Grid.Column="1"
-				BackgroundColor="Black"
-				TextColor="White"/>
-        <Button Text="Calendar"
-                Grid.Column="2"
-				BackgroundColor="Black"
-				TextColor="White"/>
-        <Button Text="Notes"
-                Clicked="OnNotesClicked"
-                Grid.Column="3"
-				BackgroundColor="Black"
-				TextColor="White"/>
+        <VerticalStackLayout Grid.Column="0" HorizontalOptions="Center">
+            <ImageButton Source="home.png"
+                         Clicked="OnHomeClicked"
+                         MaximumHeightRequest="40"
+                         MaximumWidthRequest="80"
+                         BackgroundColor="White"/>
+            <Label Text="Home" FontSize="12" TextColor="Black" HorizontalOptions="Center"/>
+        </VerticalStackLayout>
+        <VerticalStackLayout Grid.Column="1" HorizontalOptions="Center">
+            <ImageButton Source="clipboard.png"
+                         MaximumHeightRequest="40"
+                         MaximumWidthRequest="80"
+                         BackgroundColor="White"/>
+            <Label Text="Task" FontSize="12" TextColor="Black" HorizontalOptions="Center"/>
+        </VerticalStackLayout>
+        <VerticalStackLayout Grid.Column="2" HorizontalOptions="Center">
+            <ImageButton Source="calendar.png"
+                         MaximumHeightRequest="40"
+                         MaximumWidthRequest="80"
+                         BackgroundColor="White"/>
+            <Label Text="Calendar" FontSize="12" TextColor="Black" HorizontalOptions="Center"/>
+        </VerticalStackLayout>
+        <VerticalStackLayout Grid.Column="3" HorizontalOptions="Center">
+            <ImageButton Source="notes.png"
+                         Clicked="OnNotesClicked"
+                         MaximumHeightRequest="40"
+                         MaximumWidthRequest="80"
+                         BackgroundColor="White"/>
+            <Label Text="Notes" FontSize="12" TextColor="Black" HorizontalOptions="Center"/>
+        </VerticalStackLayout>
     </Grid>
 </ContentView>
