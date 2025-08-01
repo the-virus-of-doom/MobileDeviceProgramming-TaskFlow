@@ -13,8 +13,7 @@ namespace TaskFlow
         protected override Window CreateWindow(IActivationState? activationState)
         {
             Window window = new Window();
-
-            if (Preferences.Get("IsSignedIn", true))
+            if (Preferences.Get("IsSignedIn", false))
             {
                 window.Page = new AppShell();
             }

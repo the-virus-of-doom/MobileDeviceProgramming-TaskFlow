@@ -1,29 +1,94 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:TaskFlow"
-             x:Class="TaskFlow.NotesPage">
+             xmlns:views="clr-namespace:TaskFlow"
+             x:Class="TaskFlow.NotesPage"
+             BackgroundColor="Black">
+    
+    <!-- Notes Display -->
+    <ContentPage.Resources>
+        <Style TargetType="CollectionView">
+            <Setter Property="SelectionMode" Value="Single"/>
+            <Setter Property="SelectedItem" Value="{x:Null}"/>
+            <Setter Property="SelectionChangedCommand" Value="{x:Null}"/>
+        </Style>
+        <Style TargetType="Border" x:Key="NoteBorderStyle">
+            <Setter Property="BackgroundColor" Value="#222"/>
+            <Setter Property="StrokeThickness" Value="0"/>
+            <Setter Property="Padding" Value="12"/>
+            <Setter Property="Margin" Value="0,0,0,10"/>
+            <Setter Property="StrokeShape" Value="RoundRectangle 8"/>
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal"/>
+                        <VisualState x:Name="Selected">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor" Value="#222"/>
+                                <Setter Property="Shadow" Value="{x:Null}"/>
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+    </ContentPage.Resources>
 
     <Grid RowDefinitions="*,Auto">
         <!-- Main content goes here -->
         <Grid>
-            <!-- Add Note button -->
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Label Text="Notes"
+                   TextColor="White"
+                   FontSize="24"
+                   Margin="20"
+                   HorizontalOptions="Start"
+                   VerticalOptions="Start"
+                   Grid.Row="0"/>
+            <CollectionView x:Name="NotesCollection"
+                            Grid.Row="1"
+                            ItemsSource="{Binding Notes}"
+                            SelectionMode="Single"
+                            SelectionChanged="OnNoteSelected">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Border Style="{StaticResource NoteBorderStyle}">
+                            <VerticalStackLayout>
+                                <Label Text="{Binding Title}" FontAttributes="Bold" TextColor="White"/>
+                                <Label Text="{Binding Content}" TextColor="White"/>
+                                <Label Text="{Binding Timestamp}" FontSize="10" TextColor="Gray"/>
+                            </VerticalStackLayout>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
+
+        <!-- Add Note button -->
+        <AbsoluteLayout Grid.Row="0" IsClippedToBounds="False">
             <Border
                 HeightRequest="45"
                 WidthRequest="45"
-                HorizontalOptions="End"
-                VerticalOptions="End"
                 StrokeShape="RoundRectangle 50"
                 StrokeThickness="0"
-                Margin="20"
-                BackgroundColor="White">
-                <Image Source="add.png" Aspect="AspectFill"
-                       HeightRequest="40"
-                       WidthRequest="40" />
+                BackgroundColor="White"
+                Margin="0,0,20,20"
+                AbsoluteLayout.LayoutBounds="1,1,AutoSize,AutoSize"
+                AbsoluteLayout.LayoutFlags="PositionProportional">
+                <ImageButton
+                    x:Name="AddNoteButton"
+                    Clicked="OnAddNoteClicked"
+                    Source="add.png"
+                    BackgroundColor="Transparent"
+                    HeightRequest="40"
+                    WidthRequest="40"/>
             </Border>
-        </Grid>
+        </AbsoluteLayout>
 
         <!-- Navigation bar at the bottom -->
-        <local:NavigationBar Grid.Row="1" />
+        <views:NavigationBar Grid.Row="1" />
     </Grid>
 </ContentPage>

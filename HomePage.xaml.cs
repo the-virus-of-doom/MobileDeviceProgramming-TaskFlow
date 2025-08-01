@@ -15,7 +15,7 @@ namespace TaskFlow
             var parts = userData.Split('|');
             if (parts.Length >= 2)
             {
-                UserNameLabel.Text = $"Welcome {parts[0]} {parts[1]}";
+                UserNameLabel.Text = $"Welcome, {parts[0]} {parts[1]}!";
             }
             else
             {

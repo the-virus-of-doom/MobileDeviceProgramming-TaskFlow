@@ -2,12 +2,26 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:TaskFlow"
-             x:Class="TaskFlow.HomePage">
+             x:Class="TaskFlow.HomePage"
+             BackgroundColor="Black">
 
     <Grid RowDefinitions="*,Auto">
         <!-- Main content goes here -->
+        <Grid>
+            <Image Source="bell.png"
+                   Aspect="AspectFill"
+                   HeightRequest="35"
+                   WidthRequest="35"
+                   HorizontalOptions="Start"
+                   VerticalOptions="Start"
+                   Margin="20" />
+        </Grid>
         <StackLayout Padding="20" Spacing="20">
-            <Label x:Name="UserNameLabel" FontSize="15" />
+            <Label x:Name="UserNameLabel" 
+                   FontSize="20" 
+                   TextColor="White"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Start"/>
             <Button Text="Sign Out" 
                     Background="Red"
                     FontSize="15"

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TaskFlow.CreateNotePage"
+             Title="Create Note"
+             BackgroundColor="Black">
+    <!-- Create Note Inputs -->
+        <Grid Padding="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Entry x:Name="TitleEntry"
+               Placeholder="Note Title"
+               BackgroundColor="White"
+               TextColor="Black"
+               Grid.Row="0"/>
+        <Editor x:Name="ContentEditor"
+                Placeholder="Note Content"
+                AutoSize="TextChanges"
+                BackgroundColor="White"
+                TextColor="Black"
+                HeightRequest="300"
+                Margin="0, 20, 0, 0"
+                Grid.Row="1"/>
+        <Button Text="Save"
+                Clicked="OnSaveClicked"
+                BackgroundColor="#512BD4"
+                TextColor="White"
+                HeightRequest="60"
+                WidthRequest="120"
+                Margin="0, 20, 0, 0"
+                Grid.Row="2"/>
+    </Grid>
+</ContentPage>

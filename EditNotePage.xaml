@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TaskFlow.EditNotePage"
+             Title="Edit Note"
+             BackgroundColor="Black">
+    <!-- Edit Note Inputs -->
+        <VerticalStackLayout Padding="20" Spacing="16">
+        <Entry x:Name="TitleEntry"
+               Placeholder="Note Title"
+               BackgroundColor="White"
+               TextColor="Black"/>
+        <Editor x:Name="ContentEditor"
+                Placeholder="Note Content"
+                AutoSize="TextChanges"
+                BackgroundColor="White"
+                TextColor="Black"
+                HeightRequest="150"/>
+        <HorizontalStackLayout Spacing="10">
+            <Button Text="Save"
+                    Clicked="OnSaveClicked"
+                    BackgroundColor="#512BD4"
+                    TextColor="White"/>
+            <Button Text="Delete"
+                    Clicked="OnDeleteClicked"
+                    BackgroundColor="Red"
+                    TextColor="White"/>
+        </HorizontalStackLayout>
+    </VerticalStackLayout>
+</ContentPage>
