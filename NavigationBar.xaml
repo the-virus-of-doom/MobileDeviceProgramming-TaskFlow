@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TaskFlow.NavigationBar">
+	<!-- Navigation bar with buttons for Home, Tasks, Calendar, and Notes -->
+    <Grid Padding="10" BackgroundColor="White" ColumnSpacing="20">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Button Text="Home"
+                Clicked="OnHomeClicked"
+                Grid.Column="0"
+				BackgroundColor="Black"
+				TextColor="White"/>
+        <Button Text="Tasks"
+                Grid.Column="1"
+				BackgroundColor="Black"
+				TextColor="White"/>
+        <Button Text="Calendar"
+                Grid.Column="2"
+				BackgroundColor="Black"
+				TextColor="White"/>
+        <Button Text="Notes"
+                Clicked="OnNotesClicked"
+                Grid.Column="3"
+				BackgroundColor="Black"
+				TextColor="White"/>
+    </Grid>
+</ContentView>

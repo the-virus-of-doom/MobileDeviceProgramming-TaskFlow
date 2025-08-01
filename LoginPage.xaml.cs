@@ -9,7 +9,7 @@ namespace TaskFlow
         {
             InitializeComponent();
         }
-
+        // Login inputs and validation
         private async void OnLoginClicked(object sender, EventArgs e)
         {
             var email = EmailEntry.Text?.Trim().ToLowerInvariant() ?? "";
@@ -32,9 +32,13 @@ namespace TaskFlow
             Preferences.Set("IsSignedIn", true);
             Preferences.Set("CurrentUserEmail", email);
 
-            Application.Current.MainPage = new AppShell();
+            var currentWindow = Application.Current?.Windows.FirstOrDefault();
+            if (currentWindow != null)
+            {
+                currentWindow.Page = new AppShell();
+            }
         }
-
+        // Show error message if login fails
         private async Task ShowLoginError()
         {
             var result = await DisplayAlert("Error", "Email or password may be wrong", "Try again", "Sign up");
@@ -43,7 +47,7 @@ namespace TaskFlow
                 await Navigation.PushAsync(new SignUpPage());
             }
         }
-
+        // Navigate to sign up page
         private async void OnGoToSignUpClicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new SignUpPage());

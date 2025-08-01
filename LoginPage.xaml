@@ -6,8 +6,9 @@
 
     <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,*" ColumnDefinitions="0.25*,0.50*,0.25*"
           VerticalOptions="Center"
-          HorizontalOptions="FillAndExpand">
+          HorizontalOptions="Center">
 
+        <!-- Logo -->
         <Border Grid.Row="0" Grid.Column="1"
                 HeightRequest="100"
                 WidthRequest="100"
@@ -21,6 +22,7 @@
                    WidthRequest="100" />
         </Border>
 
+        <!-- Title -->
         <Label Grid.Row="1" Grid.Column="1"
                Text="Login"
                FontSize="24"
@@ -28,12 +30,13 @@
                HorizontalOptions="Center"
                VerticalOptions="End"
                Margin="0,0,0,20" />
+        <!-- Input fields -->
         <Entry Grid.Row="2" Grid.Column="1"
                Placeholder="Email"
                Keyboard="Email"
                x:Name="EmailEntry"
                TextColor="White"
-               HorizontalOptions="FillAndExpand"
+               HorizontalOptions="Center"
                WidthRequest="300"
                Margin="0,0,0,10" />
 
@@ -42,10 +45,11 @@
                IsPassword="True"
                x:Name="PasswordEntry"
                TextColor="White"
-               HorizontalOptions="FillAndExpand"
+               HorizontalOptions="Center"
                WidthRequest="300"
                Margin="0,10,0,10" />
 
+        <!-- Buttons -->
         <Button Grid.Row="4" Grid.Column="1"
                 Text="Login"
                 Clicked="OnLoginClicked"

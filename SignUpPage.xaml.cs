@@ -10,7 +10,7 @@ namespace TaskFlow
         {
             InitializeComponent();
         }
-
+        // Sign up inputs and validation
         private async void OnSignUpClicked(object sender, EventArgs e)
         {
             var firstName = FirstNameEntry.Text?.Trim() ?? "";
@@ -40,13 +40,18 @@ namespace TaskFlow
                 return;
             }
 
+            // Save user data and sign in
             Preferences.Set($"user_{email}", $"{firstName}|{lastName}|{password}");
             Preferences.Set("IsSignedIn", true);
             Preferences.Set("CurrentUserEmail", email);
 
-            Application.Current.MainPage = new AppShell();
+            var currentWindow = Application.Current?.Windows.FirstOrDefault();
+            if (currentWindow != null)
+            {
+                currentWindow.Page = new AppShell();
+            }
         }
-
+        // Navigate to login page
         private async void OnGoToLoginClicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new LoginPage());

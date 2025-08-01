@@ -7,23 +7,37 @@ namespace TaskFlow
         public App()
         {
             InitializeComponent();
+        }
 
-            // Check if user is signed in
+        //Determine the initial page based on sign-in status
+        protected override Window CreateWindow(IActivationState? activationState)
+        {
+            Window window = new Window();
+
             if (Preferences.Get("IsSignedIn", true))
             {
-                MainPage = new AppShell();
+                window.Page = new AppShell();
             }
             else
             {
-                MainPage = new NavigationPage(new LoginPage());
+                window.Page = new NavigationPage(new LoginPage());
             }
-        }
 
+            return window;
+        }
+        // Sign out logic
         private async void OnSignOutClicked(object sender, EventArgs e)
         {
             Preferences.Set("IsSignedIn", false);
             Preferences.Remove("CurrentUserEmail");
-            Application.Current.MainPage = new NavigationPage(new LoginPage());
+
+            await Task.Run(() =>
+            {
+                if (Application.Current?.Windows?.Count > 0)
+                {
+                    Application.Current.Windows[0].Page = new NavigationPage(new LoginPage());
+                }
+            });
         }
     }
 }

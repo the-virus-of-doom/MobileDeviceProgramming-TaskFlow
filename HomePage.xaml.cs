@@ -9,6 +9,7 @@ namespace TaskFlow
         {
             InitializeComponent();
 
+            // Get the current user's name and display it
             var email = Preferences.Get("CurrentUserEmail", "");
             var userData = Preferences.Get($"user_{email}", "");
             var parts = userData.Split('|');
@@ -21,24 +22,15 @@ namespace TaskFlow
                 UserNameLabel.Text = "Welcome";
             }
         }
-
-        private async void OnSignOutClicked(object sender, EventArgs e)
+        // Sign out button logic
+        private void OnSignOutClicked(object sender, EventArgs e)
         {
             Preferences.Set("IsSignedIn", false);
             Preferences.Remove("CurrentUserEmail");
-            Application.Current.MainPage = new NavigationPage(new LoginPage());
-        }
-
-        private async void OnDeleteAccountClicked(object sender, EventArgs e)
-        {
-            bool confirm = await DisplayAlert("Delete Account", "Are you sure you want to delete your account? This action cannot be undone.", "Delete", "Cancel");
-            if (confirm)
+            var currentWindow = Application.Current?.Windows.FirstOrDefault();
+            if (currentWindow != null)
             {
-                var email = Preferences.Get("CurrentUserEmail", "");
-                Preferences.Remove($"user_{email}");
-                Preferences.Set("IsSignedIn", false);
-                Preferences.Remove("CurrentUserEmail");
-                Application.Current.MainPage = new NavigationPage(new LoginPage());
+                currentWindow.Page = new NavigationPage(new LoginPage());
             }
         }
     }
