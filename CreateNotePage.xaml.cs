@@ -24,12 +24,26 @@ namespace TaskFlow
             var email = Preferences.Get("CurrentUserEmail", "");
             var noteKey = $"notes_{email}";
             var notes = Preferences.Get(noteKey, "");
-            var timestamp = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+            var timestamp = DateTime.Now.ToString("MM-dd-yyyy h:mm tt");
             var newNote = $"{title}|{content}|{timestamp}";
             notes = string.IsNullOrEmpty(notes) ? newNote : $"{notes}~{newNote}";
             Preferences.Set(noteKey, notes);
 
             await Navigation.PopAsync();
+        }
+        // Back Button logic
+        private async void OnBackClicked(object sender, EventArgs e)
+        {
+            bool confirm = await DisplayAlert(
+                "Discard Changes?",
+                "Your edits will not be saved. Do you want to go back?",
+                "Yes, Go Back",
+                "Cancel"
+            );
+            if (confirm)
+            {
+                await Navigation.PopAsync(animated: true);
+            }
         }
     }
 }

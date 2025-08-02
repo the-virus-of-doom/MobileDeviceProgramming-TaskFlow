@@ -4,33 +4,56 @@
              x:Class="TaskFlow.CreateNotePage"
              Title="Create Note"
              BackgroundColor="Black">
-    <!-- Create Note Inputs -->
-        <Grid Padding="20">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
-        <Entry x:Name="TitleEntry"
-               Placeholder="Note Title"
-               BackgroundColor="White"
-               TextColor="Black"
-               Grid.Row="0"/>
-        <Editor x:Name="ContentEditor"
-                Placeholder="Note Content"
-                AutoSize="TextChanges"
+    <Grid RowDefinitions="Auto,*">
+        <!-- Back Button -->
+        <AbsoluteLayout Grid.Row="0" IsClippedToBounds="False">
+            <Border
+                HeightRequest="50"
+                WidthRequest="50"
+                StrokeShape="RoundRectangle 50"
+                StrokeThickness="0"
                 BackgroundColor="White"
-                TextColor="Black"
-                HeightRequest="300"
-                Margin="0, 20, 0, 0"
-                Grid.Row="1"/>
-        <Button Text="Save"
-                Clicked="OnSaveClicked"
-                BackgroundColor="#512BD4"
-                TextColor="White"
-                HeightRequest="60"
-                WidthRequest="120"
-                Margin="0, 20, 0, 0"
-                Grid.Row="2"/>
+                Margin="20,20,0,20"
+                AbsoluteLayout.LayoutBounds="0,0,AutoSize,AutoSize"
+                AbsoluteLayout.LayoutFlags="PositionProportional">
+                <ImageButton
+                    x:Name="AddBackButton"
+                    Clicked="OnBackClicked"
+                    Source="back.png"
+                    BackgroundColor="Transparent"
+                    HeightRequest="40"
+                    WidthRequest="40"/>
+            </Border>
+        </AbsoluteLayout>
+
+        <!-- Create Note Inputs -->
+        <Grid Grid.Row="1" Padding="20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Entry x:Name="TitleEntry"
+                   Placeholder="Note Title"
+                   BackgroundColor="White"
+                   TextColor="Black"
+                   Grid.Row="0"/>
+            <Editor x:Name="ContentEditor"
+                    Placeholder="Note Content"
+                    AutoSize="TextChanges"
+                    BackgroundColor="White"
+                    TextColor="Black"
+                    HeightRequest="300"
+                    Margin="0, 20, 0, 0"
+                    Grid.Row="1"/>
+            <Button Text="Save"
+                    Clicked="OnSaveClicked"
+                    BackgroundColor="#512BD4"
+                    TextColor="White"
+                    HeightRequest="60"
+                    WidthRequest="120"
+                    Margin="0, 20, 0, 0"
+                    Grid.Row="2"/>
+        </Grid>
     </Grid>
 </ContentPage>

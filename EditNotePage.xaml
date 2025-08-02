@@ -2,29 +2,70 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TaskFlow.EditNotePage"
-             Title="Edit Note"
-             BackgroundColor="Black">
-    <!-- Edit Note Inputs -->
-        <VerticalStackLayout Padding="20" Spacing="16">
-        <Entry x:Name="TitleEntry"
-               Placeholder="Note Title"
-               BackgroundColor="White"
-               TextColor="Black"/>
-        <Editor x:Name="ContentEditor"
-                Placeholder="Note Content"
-                AutoSize="TextChanges"
+             BackgroundColor="Black"
+             Title="Edit Note">
+    <Grid RowDefinitions="Auto,*">
+        <!-- Back Button -->
+        <AbsoluteLayout Grid.Row="0" IsClippedToBounds="False">
+            <Border
+                HeightRequest="50"
+                WidthRequest="50"
+                StrokeShape="RoundRectangle 50"
+                StrokeThickness="0"
                 BackgroundColor="White"
-                TextColor="Black"
-                HeightRequest="150"/>
-        <HorizontalStackLayout Spacing="10">
-            <Button Text="Save"
-                    Clicked="OnSaveClicked"
-                    BackgroundColor="#512BD4"
-                    TextColor="White"/>
-            <Button Text="Delete"
-                    Clicked="OnDeleteClicked"
-                    BackgroundColor="Red"
-                    TextColor="White"/>
-        </HorizontalStackLayout>
-    </VerticalStackLayout>
+                Margin="20,20,0,20"
+                AbsoluteLayout.LayoutBounds="0,0,AutoSize,AutoSize"
+                AbsoluteLayout.LayoutFlags="PositionProportional">
+                <ImageButton
+                    x:Name="EditBackButton"
+                    Clicked="OnBackClicked"
+                    Source="back.png"
+                    BackgroundColor="Transparent"
+                    HeightRequest="40"
+                    WidthRequest="40"/>
+            </Border>
+        </AbsoluteLayout>
+
+        <!-- Edit Note Inputs -->
+        <VerticalStackLayout Grid.Row="1" Padding="20" Spacing="16">
+            <Entry x:Name="TitleEntry"
+                   Placeholder="Note Title"
+                   BackgroundColor="White"
+                   TextColor="Black"/>
+            <Editor x:Name="ContentEditor"
+                    Placeholder="Note Content"
+                    AutoSize="TextChanges"
+                    BackgroundColor="White"
+                    TextColor="Black"
+                    HeightRequest="300"/>
+            <Grid ColumnDefinitions="*,Auto,*,Auto,*,Auto,*" Padding="10">
+                <Button Text="Save"
+                        Clicked="OnSaveClicked"
+                        BackgroundColor="#512BD4"
+                        TextColor="White"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        Grid.Column="1"/>
+                <ImageButton x:Name="StarButton"
+                             Source="star.png"
+                             BackgroundColor="Gold"
+                             WidthRequest="50"
+                             HeightRequest="50"
+                             Padding="10"
+                             Aspect="AspectFit"
+                             Clicked="OnStarClicked"
+                             CornerRadius="10"
+                             HorizontalOptions="Center"
+                             VerticalOptions="Center"
+                             Grid.Column="3"/>
+                <Button Text="Delete"
+                        Clicked="OnDeleteClicked"
+                        BackgroundColor="Red"
+                        TextColor="White"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        Grid.Column="5"/>
+            </Grid>
+        </VerticalStackLayout>
+    </Grid>
 </ContentPage>

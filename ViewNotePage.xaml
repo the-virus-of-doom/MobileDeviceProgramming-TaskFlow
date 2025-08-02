@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TaskFlow.ViewNotePage"
+             BackgroundColor="Black"
+             Title="View Note">
+    <Grid RowDefinitions="Auto,*">
+        <!-- Back Button -->
+        <AbsoluteLayout Grid.Row="0" IsClippedToBounds="False">
+            <Border
+                HeightRequest="50"
+                WidthRequest="50"
+                StrokeShape="RoundRectangle 50"
+                StrokeThickness="0"
+                BackgroundColor="White"
+                Margin="20,20,0,20"
+                AbsoluteLayout.LayoutBounds="0,0,AutoSize,AutoSize"
+                AbsoluteLayout.LayoutFlags="PositionProportional">
+                <ImageButton
+                    x:Name="AddBackButton"
+                    Clicked="OnBackClicked"
+                    Source="back.png"
+                    BackgroundColor="Transparent"
+                    HeightRequest="40"
+                    WidthRequest="40"/>
+            </Border>
+        </AbsoluteLayout>
+
+        <!-- Main content -->
+        <VerticalStackLayout Grid.Row="1" Padding="24" Spacing="16">
+            <Label x:Name="TitleLabel" FontSize="24" FontAttributes="Bold" TextColor="White" TextDecorations="Underline"/>
+            <Label x:Name="ContentLabel" FontSize="18" TextColor="White"/>
+            <Label x:Name="TimestampLabel" FontSize="12" TextColor="Gray"/>
+            <Grid ColumnDefinitions="Auto,*,Auto" Padding="0">
+                <ImageButton x:Name="StarButton"
+                             Source="star.png"
+                             BackgroundColor="Gold"
+                             WidthRequest="50"
+                             HeightRequest="50"
+                             Padding="0"
+                             Aspect="AspectFit"
+                             Clicked="OnStarClicked"
+                             CornerRadius="10"
+                             HorizontalOptions="Start"
+                             Grid.Column="0"/>
+                <Button Text="Edit" 
+                        Clicked="OnEditClicked" 
+                        HorizontalOptions="End" 
+                        WidthRequest="70"
+                        HeightRequest="50"
+                        Padding="10"
+                        Grid.Column="2"/>
+            </Grid>
+        </VerticalStackLayout>
+    </Grid>
+</ContentPage>

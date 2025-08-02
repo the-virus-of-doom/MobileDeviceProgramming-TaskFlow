@@ -13,12 +13,12 @@ namespace TaskFlow
         // Event handlers for navigation buttons
         private async void OnHomeClicked(object sender, EventArgs e)
         {
-            await Shell.Current.GoToAsync(nameof(HomePage), animate: false);
+            await Shell.Current.GoToAsync("HomePage", animate: false);
         }
 
         private async void OnNotesClicked(object sender, EventArgs e)
         {
-            await Shell.Current.GoToAsync(nameof(NotesPage), animate: false);
+            await Shell.Current.GoToAsync("NotesPage", animate: false);
         }
     }
 }
