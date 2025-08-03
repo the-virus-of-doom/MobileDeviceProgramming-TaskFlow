@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using TaskFlow.Models;
 using TaskFlow.Models.ViewModels;
 using TaskFlow.Views;
@@ -11,7 +12,7 @@ public partial class TodoPage : ContentPage
 	{
 		InitializeComponent();
 
-		const int demoListLength = 5;
+		const int demoListLength = 20;
 
         for (int i = 0; i < demoListLength; i++)
         {
@@ -21,8 +22,26 @@ public partial class TodoPage : ContentPage
             UserTasks.Add(temp);
         }
 
-        Cv_TodoList.ItemsSource = UserTasks;
+        // TODO: move UserTasks to global variable when implementing DB service
+         Cv_TodoList.ItemsSource = UserTasks;
 
+    }
+
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+
+        // refresh bindings on load
+        // should fix navigating back from details showing stale data?
+        //var currentContext = BindingContext;
+        //BindingContext = null;
+        //BindingContext = currentContext;
+
+        Debug.WriteLine("UserTasks =======================================");
+        foreach (var task in UserTasks)
+        {
+            Debug.WriteLine(task.Name);
+        }
     }
 
     private void Cv_TodoList_SelectionChanged(object sender, SelectionChangedEventArgs e)
