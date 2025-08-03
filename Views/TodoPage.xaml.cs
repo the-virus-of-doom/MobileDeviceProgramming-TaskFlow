@@ -1,4 +1,6 @@
 using TaskFlow.Models;
+using TaskFlow.Models.ViewModels;
+using TaskFlow.Views;
 
 namespace TaskFlow;
 
@@ -25,15 +27,15 @@ public partial class TodoPage : ContentPage
 
     private void Cv_TodoList_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-        var selectedUserTask = e.CurrentSelection as Models.UserTask;
+        var selectedUserTask = e.CurrentSelection.FirstOrDefault() as UserTask;
         if (selectedUserTask == null) return;
 
-        // TODO: open task detail page
-        
-        //var userTaskViewModel = new UserTaskDetailViewModel { UserTask = selectedUserTask };
-        //var userTaskDetail = new UserTaskDetail();
-        //userTaskDetail.BindingContext = userTaskViewModel;
-        //Navigation.PushAsync(userTaskDetail);
+        var userTaskViewModel = new UserTaskDetailViewModel { UserTask = selectedUserTask };
+        var userTaskDetailPage = new UserTaskDetailPage
+        {
+            BindingContext = userTaskViewModel
+        };
+        Navigation.PushAsync(userTaskDetailPage);
 
         ((CollectionView)sender).SelectedItem = null;
     }
