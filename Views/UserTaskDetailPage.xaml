@@ -5,7 +5,7 @@
              xmlns:viewmodel="clr-namespace:TaskFlow.Models.ViewModels"
              x:DataType="viewmodel:UserTaskDetailViewModel"
              Title="Task Details">
-    <Grid x:Name="DetailGrid" Margin="20" BackgroundColor="Aqua">
+    <Grid x:Name="DetailGrid" Margin="20">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="2*"/>
