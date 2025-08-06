@@ -1,6 +1,7 @@
 ﻿using SQLite;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,6 +17,7 @@ namespace TaskFlow.Services
         public LocalDBService()
         {
             _connection = new SQLiteAsyncConnection(Path.Combine(FileSystem.AppDataDirectory, DB_NAME));
+            Debug.WriteLine("====== DB Location: " + Path.Combine(FileSystem.AppDataDirectory, DB_NAME).ToString());
             _connection.CreateTableAsync<UserTask>();
         }
 
