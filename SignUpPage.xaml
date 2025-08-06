@@ -1,7 +1,12 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:TaskFlow.ViewModels"
              x:Class="TaskFlow.SignUpPage"
              BackgroundColor="Black">
+
+    <ContentPage.BindingContext>
+        <vm:SignUpViewModel />
+    </ContentPage.BindingContext>
 
     <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,*" ColumnDefinitions="0.25*,0.50*,0.25*"
           VerticalOptions="Center"
@@ -33,7 +38,7 @@
         <!-- Input fields -->
         <Entry Grid.Row="2" Grid.Column="1"
                Placeholder="First Name"
-               x:Name="FirstNameEntry"
+               Text="{Binding FirstName}"
                TextColor="White"
                HorizontalOptions="Fill"
                WidthRequest="300"
@@ -41,7 +46,7 @@
 
         <Entry Grid.Row="3" Grid.Column="1"
                Placeholder="Last Name"
-               x:Name="LastNameEntry"
+               Text="{Binding LastName}"
                TextColor="White"
                HorizontalOptions="Fill"
                WidthRequest="300"
@@ -50,7 +55,7 @@
         <Entry Grid.Row="4" Grid.Column="1"
                Placeholder="Email"
                Keyboard="Email"
-               x:Name="EmailEntry"
+               Text="{Binding Email}"
                TextColor="White"
                HorizontalOptions="Fill"
                WidthRequest="300"
@@ -59,7 +64,7 @@
         <Entry Grid.Row="5" Grid.Column="1"
                Placeholder="Password"
                IsPassword="True"
-               x:Name="PasswordEntry"
+               Text="{Binding Password}"
                TextColor="White"
                HorizontalOptions="Fill"
                WidthRequest="300"
@@ -68,7 +73,7 @@
         <Entry Grid.Row="6" Grid.Column="1"
                Placeholder="Confirm Password"
                IsPassword="True"
-               x:Name="ConfirmPasswordEntry"
+               Text="{Binding ConfirmPassword}"
                TextColor="White"
                HorizontalOptions="Fill"
                WidthRequest="300"
@@ -77,7 +82,7 @@
         <!-- Buttons -->
         <Button Grid.Row="7" Grid.Column="1"
                 Text="Sign Up"
-                Clicked="OnSignUpClicked"
+                Command="{Binding SignUpCommand}"
                 Background="Red"
                 FontSize="15"
                 FontAttributes="Bold"
@@ -88,7 +93,7 @@
 
         <Button Grid.Row="8" Grid.Column="1"
                 Text="Already have an account? Log in"
-                Clicked="OnGoToLoginClicked"
+                Command="{Binding GoToLoginCommand}"
                 BackgroundColor="Transparent"
                 TextColor="Blue"
                 BorderWidth="0"

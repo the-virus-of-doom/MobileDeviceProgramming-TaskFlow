@@ -17,12 +17,11 @@
                 AbsoluteLayout.LayoutBounds="0,0,AutoSize,AutoSize"
                 AbsoluteLayout.LayoutFlags="PositionProportional">
                 <ImageButton
-                    x:Name="AddBackButton"
-                    Clicked="OnBackClicked"
                     Source="back.png"
                     BackgroundColor="Transparent"
                     HeightRequest="40"
-                    WidthRequest="40"/>
+                    WidthRequest="40"
+                    Command="{Binding BackCommand}"/>
             </Border>
         </AbsoluteLayout>
 
@@ -33,21 +32,23 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            <Entry x:Name="TitleEntry"
+            <Entry
                    Placeholder="Note Title"
                    BackgroundColor="White"
                    TextColor="Black"
-                   Grid.Row="0"/>
-            <Editor x:Name="ContentEditor"
+                   Grid.Row="0"
+                   Text="{Binding Title}"/>
+            <Editor
                     Placeholder="Note Content"
                     AutoSize="TextChanges"
                     BackgroundColor="White"
                     TextColor="Black"
                     HeightRequest="300"
                     Margin="0, 20, 0, 0"
-                    Grid.Row="1"/>
+                    Grid.Row="1"
+                    Text="{Binding Content}"/>
             <Button Text="Save"
-                    Clicked="OnSaveClicked"
+                    Command="{Binding SaveCommand}"
                     BackgroundColor="#512BD4"
                     TextColor="White"
                     HeightRequest="60"

@@ -9,6 +9,7 @@
             Routing.RegisterRoute(nameof(HomePage), typeof(HomePage));
             Routing.RegisterRoute(nameof(ViewNotePage), typeof(ViewNotePage));
             Routing.RegisterRoute(nameof(EditNotePage), typeof(EditNotePage));
+            Routing.RegisterRoute(nameof(CreateNotePage), typeof(CreateNotePage));
         }
     }
 }

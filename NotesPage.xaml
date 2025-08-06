@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:views="clr-namespace:TaskFlow"
+             xmlns:vm="clr-namespace:TaskFlow.ViewModels"
              x:Class="TaskFlow.NotesPage"
              BackgroundColor="Black">
 
@@ -62,18 +63,20 @@
                                         <SwipeItem
                                             IconImageSource="star.png"
                                             BackgroundColor="Gold"
-                                            Invoked="OnStarSwipeInvoked"
+                                            Command="{Binding Source={RelativeSource AncestorType={x:Type vm:NotesPageViewModel}}, Path=StarNoteCommand}"
                                             CommandParameter="{Binding .}" />
                                         <SwipeItem
                                             IconImageSource="trash.png"
                                             BackgroundColor="Red"
-                                            Invoked="OnDeleteSwipeInvoked"
+                                            Command="{Binding Source={RelativeSource AncestorType={x:Type vm:NotesPageViewModel}}, Path=DeleteNoteCommand}"
                                             CommandParameter="{Binding .}" />
                                     </SwipeItems>
                                 </SwipeView.RightItems>
                                 <Border Style="{StaticResource NoteBorderStyle}">
                                     <Border.GestureRecognizers>
-                                        <TapGestureRecognizer Tapped="OnNoteTapped" />
+                                        <TapGestureRecognizer
+                                            Command="{Binding Source={RelativeSource AncestorType={x:Type vm:NotesPageViewModel}}, Path=NoteTappedCommand}"
+                                            CommandParameter="{Binding .}" />
                                     </Border.GestureRecognizers>
                                     <Grid>
                                         <Grid.RowDefinitions>
@@ -132,7 +135,7 @@
                 AbsoluteLayout.LayoutFlags="PositionProportional">
                 <ImageButton
                     x:Name="AddNoteButton"
-                    Clicked="OnAddNoteClicked"
+                    Command="{Binding AddNoteCommand}"
                     Source="add.png"
                     BackgroundColor="Transparent"
                     HeightRequest="40"

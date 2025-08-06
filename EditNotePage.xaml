@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:TaskFlow.ViewModels"
              x:Class="TaskFlow.EditNotePage"
              BackgroundColor="Black"
              Title="Edit Note">
+    <ContentPage.Resources>
+        <vm:StarImageConverter x:Key="StarImageConverter" />
+    </ContentPage.Resources>
     <Grid RowDefinitions="Auto,*">
         <!-- Back Button -->
         <AbsoluteLayout Grid.Row="0" IsClippedToBounds="False">
@@ -17,8 +21,7 @@
                 AbsoluteLayout.LayoutBounds="0,0,AutoSize,AutoSize"
                 AbsoluteLayout.LayoutFlags="PositionProportional">
                 <ImageButton
-                    x:Name="EditBackButton"
-                    Clicked="OnBackClicked"
+                    Command="{Binding BackCommand}"
                     Source="back.png"
                     BackgroundColor="Transparent"
                     HeightRequest="40"
@@ -26,45 +29,38 @@
             </Border>
         </AbsoluteLayout>
 
-        <!-- Edit Note Inputs -->
-        <VerticalStackLayout Grid.Row="1" Padding="20" Spacing="16">
-            <Entry x:Name="TitleEntry"
-                   Placeholder="Note Title"
-                   BackgroundColor="White"
-                   TextColor="Black"/>
-            <Editor x:Name="ContentEditor"
-                    Placeholder="Note Content"
-                    AutoSize="TextChanges"
-                    BackgroundColor="White"
-                    TextColor="Black"
-                    HeightRequest="300"/>
-            <Grid ColumnDefinitions="*,Auto,*,Auto,*,Auto,*" Padding="10">
+        <!-- Main content -->
+        <VerticalStackLayout Grid.Row="1" Padding="24" Spacing="16">
+            <Entry Text="{Binding Title}" Placeholder="Title" x:Name="TitleEntry" FontSize="24" TextColor="White"/>
+            <Editor Text="{Binding Content}" Placeholder="Content" x:Name="ContentEditor" FontSize="18" TextColor="White"
+                    HeightRequest="200" AutoSize="TextChanges"/>
+            <Label Text="{Binding Timestamp}" FontSize="12" TextColor="Gray"/>
+            <Grid ColumnDefinitions="Auto,*,Auto" Padding="0">
+                <ImageButton
+                    Source="{Binding IsStarred, Converter={StaticResource StarImageConverter}}"
+                    BackgroundColor="Gold"
+                    WidthRequest="50"
+                    HeightRequest="50"
+                    Padding="0"
+                    Aspect="AspectFit"
+                    Command="{Binding StarCommand}"
+                    CornerRadius="10"
+                    HorizontalOptions="Start"
+                    Grid.Column="0"/>
                 <Button Text="Save"
-                        Clicked="OnSaveClicked"
-                        BackgroundColor="#512BD4"
-                        TextColor="White"
+                        Command="{Binding SaveCommand}"
                         HorizontalOptions="Center"
-                        VerticalOptions="Center"
+                        WidthRequest="70"
+                        HeightRequest="50"
+                        Padding="10"
                         Grid.Column="1"/>
-                <ImageButton x:Name="StarButton"
-                             Source="star.png"
-                             BackgroundColor="Gold"
-                             WidthRequest="50"
-                             HeightRequest="50"
-                             Padding="10"
-                             Aspect="AspectFit"
-                             Clicked="OnStarClicked"
-                             CornerRadius="10"
-                             HorizontalOptions="Center"
-                             VerticalOptions="Center"
-                             Grid.Column="3"/>
                 <Button Text="Delete"
-                        Clicked="OnDeleteClicked"
-                        BackgroundColor="Red"
-                        TextColor="White"
-                        HorizontalOptions="Center"
-                        VerticalOptions="Center"
-                        Grid.Column="5"/>
+                        Command="{Binding DeleteCommand}"
+                        HorizontalOptions="End"
+                        WidthRequest="70"
+                        HeightRequest="50"
+                        Padding="10"
+                        Grid.Column="2"/>
             </Grid>
         </VerticalStackLayout>
     </Grid>
