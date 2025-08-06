@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodel="clr-namespace:TaskFlow.Models.ViewModels"
+             xmlns:models="clr-namespace:TaskFlow.Models"
+             x:DataType="viewmodel:TodoPageViewModel"
+             x:Class="TaskFlow.TodoPage"
+             Title="TodoPage">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.1*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <!-- Header info -->
+        <VerticalStackLayout Grid.Row="0">
+            <Label 
+                Text="Task Flow"
+                FontSize="Title"
+                FontAttributes="Bold"
+                VerticalOptions="Center" 
+                HorizontalOptions="Center" />
+            <Label 
+                Text="To-dos"
+                FontSize="Title"
+                FontAttributes="None"
+                VerticalOptions="Center" 
+                HorizontalOptions="Center" />
+        </VerticalStackLayout>
+        
+        <!-- List -->
+        <CollectionView
+            Grid.Row="1"
+            x:Name="Cv_TodoList"
+            ItemsSource="{Binding UserTasks}"
+            IsGrouped="False"
+            SelectionMode="Single"
+            SelectionChanged="Cv_TodoList_SelectionChanged">
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout Orientation="Vertical"/>
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="{x:Type models:UserTask}">
+                    <HorizontalStackLayout Margin="10" Padding="5" Spacing="5">
+                        <!-- checkbox -->
+                        <CheckBox IsChecked="{Binding IsCompleted}"/>
+                        <!-- task info -->
+                        <VerticalStackLayout>
+                            <Label Text="{Binding Name}" FontSize="Medium"  FontAttributes="Bold"/>
+                            <!-- TODO: truncate description if too long? -->
+                            <Label Text="{Binding Description}" FontAttributes="Italic"/>
+                        </VerticalStackLayout>
+                    </HorizontalStackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        
+    </Grid>
+</ContentPage>
