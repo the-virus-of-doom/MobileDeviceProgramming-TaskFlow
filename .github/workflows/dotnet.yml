@@ -8,8 +8,16 @@ name: .NET Build (Sanity Check)
 on:
   push:
     branches: ["main"]
+    paths-ignore:
+      - "**/*.md"
+      - "**/*.gitignore"
+      - "**/*.gitattributes"
   pull_request:
     branches: ["main"]
+    paths-ignore:
+      - "**/*.md"
+      - "**/*.gitignore"
+      - "**/*.gitattributes"
 
 jobs:
   build:
@@ -27,8 +35,9 @@ jobs:
         run: dotnet workload list
       - name: Restore dependencies
         run: dotnet restore
-      - name: Build
-        run: dotnet build .\TaskFlow.csproj -f:net8.0-windows10.0.19041.0 --no-restore
-    # no tests, commenting out
-    # - name: Test
-    #   run: dotnet test --no-build --verbosity normal
+      - name: Build All
+        run: dotnet build --no-restore
+
+      # Might as well build everything since it doesn't take super long after downloading all the MAUI dependencies
+      # - name: Build Windows
+      #   run: dotnet build .\TaskFlow.csproj -f:net8.0-windows10.0.19041.0 --no-restore

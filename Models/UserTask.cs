@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SQLite;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,11 +7,21 @@ using System.Threading.Tasks;
 
 namespace TaskFlow.Models
 {
+    [Table("userTask")]
     public class UserTask
     {
+        [PrimaryKey, AutoIncrement]
+        [Column("id")]
+        public int Id { get; set; }
+        [Column("user_id")]
+        public int UserId { get; set; }
+        [Column("name")]
         public string Name { get; set; }
+        [Column("description")]
         public string Description { get; set; }
+        [Column("due_datetime")]
         public DateTime DueDateTime { get; set; }
+        [Column("is_completed")]
         public bool IsCompleted { get; set; }
 
         public UserTask()
