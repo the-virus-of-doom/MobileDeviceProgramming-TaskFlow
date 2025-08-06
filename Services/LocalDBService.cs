@@ -8,7 +8,7 @@ using TaskFlow.Models;
 
 namespace TaskFlow.Services
 {
-    internal class LocalDBService
+    public class LocalDBService
     {
         private const string DB_NAME = "taskflow_db.db3";
         private readonly SQLiteAsyncConnection _connection;

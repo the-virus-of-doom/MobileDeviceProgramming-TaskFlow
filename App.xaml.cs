@@ -1,4 +1,6 @@
-﻿namespace TaskFlow
+﻿using TaskFlow.Services;
+
+namespace TaskFlow
 {
     public partial class App : Application
     {
@@ -10,7 +12,7 @@
             Current.UserAppTheme = AppTheme.Light;
             this.RequestedThemeChanged += (s, e) => { Application.Current.UserAppTheme = AppTheme.Light; };
 
-            MainPage = new NavigationPage(new MainPage());
+            MainPage = new NavigationPage(new MainPage(new LocalDBService()));
         }
     }
 }
