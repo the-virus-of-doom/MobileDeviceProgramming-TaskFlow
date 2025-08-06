@@ -23,6 +23,8 @@ jobs:
           dotnet-version: 8.0.x
       - name: Install .NET MAUI
         run: dotnet workload install maui-windows
+      - name: Display Installed Workloads
+        run: dotnet workload list
       - name: Restore dependencies
         run: dotnet restore
       - name: Build
