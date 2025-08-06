@@ -2,15 +2,20 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TaskFlow.SettingsPage"
-             Title="SettingsPage">
+             xmlns:viewmodel="clr-namespace:TaskFlow.Models.ViewModels"
+             x:DataType="viewmodel:SettingsPageViewModel"
+             Title="Settings Page">
     <Grid Margin="20" Padding="10">
         <Grid.RowDefinitions>
-            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1.5*"/>
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
+
+            <!-- spacer for bottom -->
+            <RowDefinition Height="6*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -34,12 +39,18 @@
         
         <!-- Settings -->
         <Label Grid.Row="1" Grid.Column="0" Text="In-App Notifications" VerticalOptions="Center"/>
-        <Switch Grid.Row="1" Grid.Column="1" x:Name="Switch_InAppNotifications"/>
+        <Switch Grid.Row="1" Grid.Column="1"
+                x:Name="Switch_InAppNotifications"
+                IsToggled="{Binding UserSettings.InAppNotifications}"/>
 
         <Label Grid.Row="2" Grid.Column="0" Text="Notifications" VerticalOptions="Center"/>
-        <Switch Grid.Row="2" Grid.Column="1" x:Name="Switch_Notifications"/>
+        <Switch Grid.Row="2" Grid.Column="1"
+                x:Name="Switch_Notifications"
+                IsToggled="{Binding UserSettings.Notifications}"/>
 
         <Label Grid.Row="3" Grid.Column="0" Text="Location Services" VerticalOptions="Center"/>
-        <Switch Grid.Row="3" Grid.Column="1" x:Name="Switch_LocationServices"/>
+        <Switch Grid.Row="3" Grid.Column="1" 
+                x:Name="Switch_LocationServices"
+                IsToggled="{Binding UserSettings.LocationServices}"/>
     </Grid>
 </ContentPage>
