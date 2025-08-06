@@ -34,10 +34,6 @@ jobs:
       - name: Display Installed Workloads
         run: dotnet workload list
       - name: Restore dependencies
-        run: dotnet restore
-      - name: Build All
-        run: dotnet build --no-restore
-
-      # Might as well build everything since it doesn't take super long after downloading all the MAUI dependencies
-      # - name: Build Windows
-      #   run: dotnet build .\TaskFlow.csproj -f:net8.0-windows10.0.19041.0 --no-restore
+        run: dotnet restore --ignore-failed-sources
+      - name: Build Windows
+        run: dotnet build .\TaskFlow.csproj -f:net8.0-windows10.0.19041.0 --no-restore
