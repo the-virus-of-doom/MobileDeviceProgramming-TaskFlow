@@ -20,31 +20,43 @@ namespace TaskFlow.Services
         }
 
         #region UserTask
+        private UserTask EnforceUser(int userId, UserTask userTask)
+        {
+            // force any UserTask to be using the correct userId
+            // to prevent them from being assigned to the wrong user
+            userTask.UserId = userId;
+            return userTask;
+        }
+
         public async Task<List<UserTask>> GetUserTasks(int userId)
         {
             return await _connection.Table<UserTask>()
                 .Where(x => x.UserId == userId)
                 .ToListAsync();
         }
-        public async Task<UserTask> GetById(int id)
+        public async Task<UserTask> GetById(int userId, int id)
         {
             return await _connection.Table<UserTask>()
+                .Where(x => x.UserId == userId)
                 .Where(x => x.Id == id)
                 .FirstOrDefaultAsync();
         }
 
-        public async Task Create(UserTask userTask)
+        public async Task Create(int userId, UserTask userTask)
         {
-            await _connection.InsertAsync(userTask);
+            await _connection.InsertAsync(EnforceUser(userId, userTask));
         }
 
-        public async Task Update(UserTask userTask)
+        public async Task Update(int userId, UserTask userTask)
         {
-            await _connection.UpdateAsync(userTask);
+            await _connection.UpdateAsync(EnforceUser(userId, userTask));
         }
 
         public async Task Delete(UserTask userTask)
         {
+            // it would be nice to validate the current user, 
+            // but this may be beyond the scope for now
+            // ...unless we add another service layer that handles that
             await _connection.DeleteAsync(userTask);
         }
         #endregion UserTask
