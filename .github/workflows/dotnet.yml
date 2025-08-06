@@ -7,27 +7,26 @@ name: .NET Build (Sanity Check)
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
   pull_request:
-    branches: [ "main" ]
+    branches: ["main"]
 
 jobs:
   build:
-
     runs-on: windows-latest
 
     steps:
-    - uses: actions/checkout@v4
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v4
-      with:
-        dotnet-version: 8.0.x
-    - name: Install .NET MAUI
-      run: dotnet workload install maui-windows --ignore-failed-sources
-    - name: Restore dependencies
-      run: dotnet restore
-    - name: Build
-      run: dotnet build .\TaskFlow.csproj -f:net8.0-windows10.0.19041.0 --no-restore
+      - uses: actions/checkout@v4
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+      - name: Install .NET MAUI
+        run: dotnet workload install maui-windows
+      - name: Restore dependencies
+        run: dotnet restore
+      - name: Build
+        run: dotnet build .\TaskFlow.csproj -f:net8.0-windows10.0.19041.0 --no-restore
     # no tests, commenting out
     # - name: Test
     #   run: dotnet test --no-build --verbosity normal
