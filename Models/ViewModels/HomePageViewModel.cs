@@ -90,7 +90,7 @@ namespace TaskFlow.ViewModels
             }
         }
 
-        private async Task OnSignOut()
+        private Task OnSignOut()
         {
             Preferences.Set("IsSignedIn", false);
             Preferences.Remove("CurrentUserEmail");
@@ -104,11 +104,17 @@ namespace TaskFlow.ViewModels
                     currentWindow.Page = new NavigationPage(new LoginPage());
                 });
             }
+            return Task.CompletedTask;
         }
 
         private async Task OnUserButton()
         {
-            await Application.Current.MainPage.DisplayAlert("User", "User button clicked!", "OK");
+            var currentWindow = Application.Current?.Windows.FirstOrDefault();
+            var currentPage = currentWindow?.Page;
+            if (currentPage != null)
+            {
+                await currentPage.DisplayAlert("User", "User button clicked!", "OK");
+            }
         }
     }
 }

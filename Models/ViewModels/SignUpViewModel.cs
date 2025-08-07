@@ -74,7 +74,11 @@ namespace TaskFlow.ViewModels
 
             if (errors.Length > 0)
             {
-                await Application.Current.MainPage.DisplayAlert("Error", errors.ToString().Trim(), "OK");
+                var mainPage = Application.Current?.Windows.FirstOrDefault()?.Page;
+                if (mainPage != null)
+                {
+                    await mainPage.DisplayAlert("Error", errors.ToString().Trim(), "OK");
+                }
                 return;
             }
 
@@ -91,7 +95,15 @@ namespace TaskFlow.ViewModels
 
         private async Task OnGoToLogin()
         {
-            await Application.Current.MainPage.Navigation.PushAsync(new LoginPage());
+            var mainPage = Application.Current?.Windows.FirstOrDefault()?.Page;
+            if (mainPage is NavigationPage navigationPage)
+            {
+                await navigationPage.PushAsync(new LoginPage());
+            }
+            else if (mainPage?.Navigation != null)
+            {
+                await mainPage.Navigation.PushAsync(new LoginPage());
+            }
         }
 
         public event PropertyChangedEventHandler? PropertyChanged;

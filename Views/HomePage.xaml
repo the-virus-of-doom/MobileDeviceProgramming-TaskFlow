@@ -31,7 +31,12 @@
                        TextColor="White"
                        HorizontalOptions="Center"
                        VerticalOptions="Start"/>
-                
+
+                <Label Text="Tasks"
+                       FontSize="24"
+                       TextColor="White"
+                       Margin="0,10,0,0"/>  
+
                 <!-- Starred Notes Section -->
                 <Label Text="Starred Notes"
                        FontSize="24"

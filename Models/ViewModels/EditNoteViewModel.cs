@@ -96,7 +96,11 @@ namespace TaskFlow.ViewModels
 
         private async Task DeleteAsync()
         {
-            bool confirm = await Application.Current.MainPage.DisplayAlert("Delete Note", "Are you sure you want to delete this note?", "Yes", "No");
+            var mainPage = Application.Current?.Windows.FirstOrDefault()?.Page;
+            if (mainPage == null)
+                return;
+
+            bool confirm = await mainPage.DisplayAlert("Delete Note", "Are you sure you want to delete this note?", "Yes", "No");
             if (!confirm)
                 return;
 
@@ -124,7 +128,11 @@ namespace TaskFlow.ViewModels
 
         private async Task BackAsync()
         {
-            bool confirm = await Application.Current.MainPage.DisplayAlert(
+            var mainPage = Application.Current?.Windows.FirstOrDefault()?.Page;
+            if (mainPage == null)
+                return;
+
+            bool confirm = await mainPage.DisplayAlert(
                 "Discard Changes?",
                 "Your edits will not be saved. Do you want to go back?",
                 "Yes, Go Back",

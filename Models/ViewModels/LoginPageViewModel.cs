@@ -62,16 +62,26 @@ namespace TaskFlow.ViewModels
 
         private async Task ShowLoginError()
         {
-            var result = await Application.Current.MainPage.DisplayAlert("Error", "Email or password may be wrong", "Try again", "Sign up");
-            if (!result)
+            var currentWindow = Application.Current?.Windows.FirstOrDefault();
+            var mainPage = currentWindow?.Page;
+            if (mainPage != null)
             {
-                await Application.Current.MainPage.Navigation.PushAsync(new SignUpPage());
+                var result = await mainPage.DisplayAlert("Error", "Email or password may be wrong", "Try again", "Sign up");
+                if (!result)
+                {
+                    await mainPage.Navigation.PushAsync(new SignUpPage());
+                }
             }
         }
 
         private async Task OnGoToSignUp()
         {
-            await Application.Current.MainPage.Navigation.PushAsync(new SignUpPage());
+            var currentWindow = Application.Current?.Windows.FirstOrDefault();
+            var mainPage = currentWindow?.Page;
+            if (mainPage != null)
+            {
+                await mainPage.Navigation.PushAsync(new SignUpPage());
+            }
         }
 
         public event PropertyChangedEventHandler? PropertyChanged;

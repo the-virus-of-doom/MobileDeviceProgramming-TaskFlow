@@ -6,8 +6,8 @@ namespace TaskFlow.ViewModels
 {
     public class CreateNoteViewModel : BindableObject
     {
-        private string _title;
-        private string _content;
+        private string _title = string.Empty;
+        private string _content = string.Empty;
         private readonly INavigation _navigation;
 
         public CreateNoteViewModel(INavigation navigation)
@@ -36,8 +36,11 @@ namespace TaskFlow.ViewModels
         {
             if (string.IsNullOrWhiteSpace(Title) || string.IsNullOrWhiteSpace(Content))
             {
-                var currentPage = Application.Current.MainPage;
-                await currentPage.DisplayAlert("Error", "Please enter both a title and content.", "OK");
+                var currentPage = Application.Current?.Windows[0]?.Page;
+                if (currentPage != null)
+                {
+                    await currentPage.DisplayAlert("Error", "Please enter both a title and content.", "OK");
+                }
                 return;
             }
 
@@ -54,16 +57,19 @@ namespace TaskFlow.ViewModels
 
         private async Task BackAsync()
         {
-            var currentPage = Application.Current.MainPage;
-            bool confirm = await currentPage.DisplayAlert(
-                "Discard Changes?",
-                "Your edits will not be saved. Do you want to go back?",
-                "Yes, Go Back",
-                "Cancel"
-            );
-            if (confirm)
+            var currentPage = Application.Current?.Windows[0]?.Page;
+            if (currentPage != null)
             {
-                await _navigation.PopAsync(animated: true);
+                bool confirm = await currentPage.DisplayAlert(
+                    "Discard Changes?",
+                    "Your edits will not be saved. Do you want to go back?",
+                    "Yes, Go Back",
+                    "Cancel"
+                );
+                if (confirm)
+                {
+                    await _navigation.PopAsync(animated: true);
+                }
             }
         }
     }
