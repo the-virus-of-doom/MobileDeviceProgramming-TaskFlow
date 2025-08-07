@@ -3,7 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:TaskFlow.ViewModels"
              x:Class="TaskFlow.ViewNotePage"
-             BackgroundColor="Black"
              Title="View Note">
     <ContentPage.Resources>
         <vm:StarImageConverter x:Key="StarImageConverter" />
@@ -32,8 +31,8 @@
 
         <!-- Main content -->
         <VerticalStackLayout Grid.Row="1" Padding="24" Spacing="16">
-            <Label Text="{Binding Title}" FontSize="24" FontAttributes="Bold" TextColor="White" TextDecorations="Underline"/>
-            <Label Text="{Binding Content}" FontSize="18" TextColor="White"/>
+            <Label Text="{Binding Title}" FontSize="24" FontAttributes="Bold" TextColor="Black" TextDecorations="Underline"/>
+            <Label Text="{Binding Content}" FontSize="18" TextColor="Black"/>
             <Label Text="{Binding Timestamp}" FontSize="12" TextColor="Gray"/>
             <Grid ColumnDefinitions="Auto,*,Auto" Padding="0">
                 <ImageButton
