@@ -6,7 +6,7 @@ using System.Globalization;
 using Microsoft.Maui.Storage;
 using TaskFlow.Models;
 
-namespace TaskFlow.ViewModels
+namespace TaskFlow.Models.ViewModels.Notes
 {
     public class ViewNoteViewModel : INotifyPropertyChanged
     {

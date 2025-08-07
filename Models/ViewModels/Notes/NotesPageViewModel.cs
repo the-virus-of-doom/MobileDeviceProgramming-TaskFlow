@@ -4,7 +4,7 @@ using Microsoft.Maui.Controls;
 using Microsoft.Maui.Storage;
 using TaskFlow.Models;
 
-namespace TaskFlow.ViewModels
+namespace TaskFlow.Models.ViewModels.Notes
 {
     public class NotesPageViewModel : BindableObject
     {
