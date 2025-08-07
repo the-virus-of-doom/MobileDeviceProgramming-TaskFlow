@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TaskFlow.Views.UserTaskDetailPage"
+             xmlns:viewmodel="clr-namespace:TaskFlow.Models.ViewModels"
+             x:DataType="viewmodel:UserTaskDetailViewModel"
+             Title="Task Details">
+    <Grid x:Name="DetailGrid" Margin="20">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.2*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+
+            <!-- "add task" button here?-->
+            
+            <!-- spacer for bottom -->
+            <RowDefinition Height="6*"/>
+        </Grid.RowDefinitions>
+
+        <!-- where best to mark complete? -->
+        <Label Grid.Row="0" Grid.ColumnSpan="2" Text="Task Details" VerticalOptions="Center"/>
+
+        <Label Grid.Row="1" Grid.Column="0" VerticalOptions="Center" Text="Task Name"/>
+        <Entry Grid.Row="1" Grid.Column="1" VerticalOptions="Center" Text="{Binding UserTask.Name}" Placeholder="Enter task name..."/>
+
+        <Label Grid.Row="2" Grid.Column="0" VerticalOptions="Center" Text="Task Description"/>
+        <Entry Grid.Row="2" Grid.Column="1" VerticalOptions="Center" Text="{Binding UserTask.Description}" Placeholder="Enter task description..."/>
+
+        <Label Grid.Row="3" Grid.Column="0" VerticalOptions="Center" Text="Due Date"/>
+        <DatePicker Grid.Row="3" Grid.Column="1" VerticalOptions="Center" Date="{Binding UserTask.DueDateTime.Date}"/>
+
+        <Label Grid.Row="4" Grid.Column="0" VerticalOptions="Center" Text="Due Time"/>
+        <TimePicker Grid.Row="4" Grid.Column="1" VerticalOptions="Center" Time="{Binding UserTask.DueDateTime.TimeOfDay}"/>
+    </Grid>
+</ContentPage>

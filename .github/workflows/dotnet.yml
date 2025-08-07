@@ -1,0 +1,43 @@
+# This workflow will build a .NET project
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
+
+# This is intended to be a basic sanity check to make sure the project at least builds
+
+name: .NET Build (Sanity Check)
+
+on:
+  push:
+    branches: ["main"]
+    paths-ignore:
+      - "**/*.md"
+      - "**/*.gitignore"
+      - "**/*.gitattributes"
+  pull_request:
+    branches: ["main"]
+    paths-ignore:
+      - "**/*.md"
+      - "**/*.gitignore"
+      - "**/*.gitattributes"
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+      - name: Install .NET MAUI
+        run: dotnet workload install maui-windows
+      - name: Display Installed Workloads
+        run: dotnet workload list
+      - name: Restore dependencies
+        run: dotnet restore
+      - name: Build All
+        run: dotnet build --no-restore
+
+      # Might as well build everything since it doesn't take super long after downloading all the MAUI dependencies
+      # - name: Build Windows
+      #   run: dotnet build .\TaskFlow.csproj -f:net8.0-windows10.0.19041.0 --no-restore

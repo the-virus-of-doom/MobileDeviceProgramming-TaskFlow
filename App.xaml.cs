@@ -1,4 +1,6 @@
-﻿using Microsoft.Maui.Storage;
+using TaskFlow.Services;
+
+using Microsoft.Maui.Storage;
 
 namespace TaskFlow
 {
@@ -12,6 +14,7 @@ namespace TaskFlow
         //Determine the initial page based on sign-in status
         protected override Window CreateWindow(IActivationState? activationState)
         {
+            // TODO: re-add LocalDBService
             Window window = new Window();
             if (Preferences.Get("IsSignedIn", false))
             {
