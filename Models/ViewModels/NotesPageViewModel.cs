@@ -2,6 +2,7 @@ using System.Collections.ObjectModel;
 using System.Windows.Input;
 using Microsoft.Maui.Controls;
 using Microsoft.Maui.Storage;
+using TaskFlow.Models;
 
 namespace TaskFlow.ViewModels
 {
@@ -129,13 +130,5 @@ namespace TaskFlow.ViewModels
                 LoadNotes();
             }
         }
-    }
-
-    public class NoteModel
-    {
-        public required string Title { get; set; }
-        public required string Content { get; set; }
-        public required string Timestamp { get; set; }
-        public bool IsStarred { get; set; }
     }
 }
