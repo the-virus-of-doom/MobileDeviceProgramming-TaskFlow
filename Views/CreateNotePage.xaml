@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TaskFlow.CreateNotePage"
+             xmlns:viewModels="clr-namespace:TaskFlow.ViewModels"
+             x:DataType="viewModels:CreateNoteViewModel"
+             Title="Create Note"
+             BackgroundColor="Black">
+    <Grid RowDefinitions="Auto,*">
+        <!-- Back Button -->
+        <AbsoluteLayout Grid.Row="0" IsClippedToBounds="False">
+            <Border
+                HeightRequest="50"
+                WidthRequest="50"
+                StrokeShape="RoundRectangle 50"
+                StrokeThickness="0"
+                BackgroundColor="White"
+                Margin="20,20,0,20"
+                AbsoluteLayout.LayoutBounds="0,0,AutoSize,AutoSize"
+                AbsoluteLayout.LayoutFlags="PositionProportional">
+                <ImageButton
+                    Source="back.png"
+                    BackgroundColor="Transparent"
+                    HeightRequest="40"
+                    WidthRequest="40"
+                    Command="{Binding BackCommand}"/>
+            </Border>
+        </AbsoluteLayout>
+
+        <!-- Create Note Inputs -->
+        <Grid Grid.Row="1" Padding="20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Entry
+                   Placeholder="Note Title"
+                   BackgroundColor="White"
+                   TextColor="Black"
+                   Grid.Row="0"
+                   Text="{Binding Title, Mode=TwoWay}"/>
+            <Editor
+                    Placeholder="Note Content"
+                    AutoSize="TextChanges"
+                    BackgroundColor="White"
+                    TextColor="Black"
+                    HeightRequest="300"
+                    Margin="0, 20, 0, 0"
+                    Grid.Row="1"
+                    Text="{Binding Content, Mode=TwoWay}"/>
+            <Button Text="Save"
+                    Command="{Binding SaveCommand}"
+                    BackgroundColor="#512BD4"
+                    TextColor="White"
+                    HeightRequest="60"
+                    WidthRequest="120"
+                    Margin="0, 20, 0, 0"
+                    Grid.Row="2"/>
+        </Grid>
+    </Grid>
+</ContentPage>

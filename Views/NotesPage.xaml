@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:views="clr-namespace:TaskFlow"
+             xmlns:vm="clr-namespace:TaskFlow.ViewModels"
+             x:Class="TaskFlow.NotesPage"
+             BackgroundColor="Black">
+
+    <!-- Notes Display -->
+    <ContentPage.Resources>
+        <Style TargetType="CollectionView">
+            <Setter Property="SelectionMode" Value="Single"/>
+            <Setter Property="SelectedItem" Value="{x:Null}"/>
+            <Setter Property="SelectionChangedCommand" Value="{x:Null}"/>
+        </Style>
+        <Style TargetType="Border" x:Key="NoteBorderStyle">
+            <Setter Property="BackgroundColor" Value="#222"/>
+            <Setter Property="StrokeThickness" Value="0"/>
+            <Setter Property="Padding" Value="12"/>
+            <Setter Property="Margin" Value="0,0,0,10"/>
+            <Setter Property="StrokeShape" Value="RoundRectangle 8"/>
+            <Setter Property="Shadow" Value="{x:Null}"/>
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal"/>
+                        <VisualState x:Name="Selected">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor" Value="#222"/>
+                                <Setter Property="Shadow" Value="{x:Null}"/>
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+    </ContentPage.Resources>
+
+    <Grid RowDefinitions="*,Auto">
+        <!-- Main content goes here -->
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Label Text="Notes"
+                   TextColor="White"
+                   FontSize="24"
+                   Margin="20"
+                   HorizontalOptions="Start"
+                   VerticalOptions="Start"
+                   Grid.Row="0"/>
+            <CollectionView x:Name="NotesCollection"
+                Grid.Row="1"
+                ItemsSource="{Binding Notes}"
+                SelectionMode="None">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Padding="10" Margin="5" RowDefinitions="Auto,Auto" ColumnDefinitions="*,Auto">
+                            <SwipeView>
+                                <SwipeView.RightItems>
+                                    <SwipeItems>
+                                        <SwipeItem
+                                            IconImageSource="star.png"
+                                            BackgroundColor="Gold"
+                                            Command="{Binding Source={RelativeSource AncestorType={x:Type vm:NotesPageViewModel}}, Path=StarNoteCommand}"
+                                            CommandParameter="{Binding .}" />
+                                        <SwipeItem
+                                            IconImageSource="trash.png"
+                                            BackgroundColor="Red"
+                                            Command="{Binding Source={RelativeSource AncestorType={x:Type vm:NotesPageViewModel}}, Path=DeleteNoteCommand}"
+                                            CommandParameter="{Binding .}" />
+                                    </SwipeItems>
+                                </SwipeView.RightItems>
+                                <Border Style="{StaticResource NoteBorderStyle}">
+                                    <Border.GestureRecognizers>
+                                        <TapGestureRecognizer
+                                            Command="{Binding Source={RelativeSource AncestorType={x:Type vm:NotesPageViewModel}}, Path=NoteTappedCommand}"
+                                            CommandParameter="{Binding .}" />
+                                    </Border.GestureRecognizers>
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <VerticalStackLayout Grid.Row="0" Grid.Column="0">
+                                            <Label Text="{Binding Title}" FontAttributes="Bold" TextColor="White" TextDecorations="Underline" LineBreakMode="TailTruncation" MaxLines="1"/>
+                                            <Label Text="{Binding Content}" 
+                                                   TextColor="White"
+                                                   LineBreakMode="TailTruncation"
+                                                   MaxLines="2"/>
+                                            <Label Text="{Binding Timestamp}" FontSize="10" TextColor="Gray"/>
+                                        </VerticalStackLayout>
+                                        <Border
+                                            BackgroundColor="Gold"
+                                            StrokeShape="RoundRectangle 12"
+                                            HeightRequest="24"
+                                            WidthRequest="24"
+                                            VerticalOptions="Start"
+                                            HorizontalOptions="End"
+                                            Grid.Row="0"
+                                            Grid.Column="1"
+                                            IsVisible="{Binding IsStarred}">
+                                            <Image
+                                                Source="star_fill.png"
+                                                BackgroundColor="Transparent"
+                                                WidthRequest="16"
+                                                HeightRequest="16"
+                                                VerticalOptions="Center"
+                                                HorizontalOptions="Center"/>
+                                        </Border>
+                                    </Grid>
+                                </Border>
+                            </SwipeView>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
+
+        <!-- Add Note button -->
+        <AbsoluteLayout Grid.Row="0" IsClippedToBounds="False">
+            <Border
+                HeightRequest="50"
+                WidthRequest="50"
+                StrokeShape="RoundRectangle 50"
+                StrokeThickness="0"
+                BackgroundColor="White"
+                Margin="0,0,20,20"
+                AbsoluteLayout.LayoutBounds="1,1,AutoSize,AutoSize"
+                AbsoluteLayout.LayoutFlags="PositionProportional">
+                <ImageButton
+                    x:Name="AddNoteButton"
+                    Command="{Binding AddNoteCommand}"
+                    Source="add.png"
+                    BackgroundColor="Transparent"
+                    HeightRequest="40"
+                    WidthRequest="40"/>
+            </Border>
+        </AbsoluteLayout>
+
+        <!-- Navigation bar at the bottom -->
+        <views:NavigationBar Grid.Row="1" />
+    </Grid>
+</ContentPage>
