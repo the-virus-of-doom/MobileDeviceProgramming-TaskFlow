@@ -4,8 +4,7 @@
              x:Class="TaskFlow.CreateNotePage"
              xmlns:viewModels="clr-namespace:TaskFlow.ViewModels"
              x:DataType="viewModels:CreateNoteViewModel"
-             Title="Create Note"
-             BackgroundColor="Black">
+             Title="Create Note">
     <Grid RowDefinitions="Auto,*">
         <!-- Back Button -->
         <AbsoluteLayout Grid.Row="0" IsClippedToBounds="False">
