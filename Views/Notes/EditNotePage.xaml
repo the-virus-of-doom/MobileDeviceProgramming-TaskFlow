@@ -3,7 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:TaskFlow.ViewModels"
              x:Class="TaskFlow.EditNotePage"
-             BackgroundColor="Black"
              Title="Edit Note">
     <ContentPage.Resources>
         <vm:StarImageConverter x:Key="StarImageConverter" />
@@ -31,8 +30,8 @@
 
         <!-- Main content -->
         <VerticalStackLayout Grid.Row="1" Padding="24" Spacing="16">
-            <Entry Text="{Binding Title}" Placeholder="Title" x:Name="TitleEntry" FontSize="24" TextColor="White"/>
-            <Editor Text="{Binding Content}" Placeholder="Content" x:Name="ContentEditor" FontSize="18" TextColor="White"
+            <Entry Text="{Binding Title}" Placeholder="Title" x:Name="TitleEntry" FontSize="24" TextColor="Black"/>
+            <Editor Text="{Binding Content}" Placeholder="Content" x:Name="ContentEditor" FontSize="18" TextColor="Black"
                     HeightRequest="200" AutoSize="TextChanges"/>
             <Label Text="{Binding Timestamp}" FontSize="12" TextColor="Gray"/>
             <Grid ColumnDefinitions="Auto,*,Auto" Padding="0">
