@@ -3,24 +3,15 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewmodel="clr-namespace:TaskFlow.Models.ViewModels"
              xmlns:models="clr-namespace:TaskFlow.Models"
+             xmlns:views="clr-namespace:TaskFlow"
              x:DataType="viewmodel:TodoPageViewModel"
              x:Class="TaskFlow.TodoPage"
-             Title="TodoPage">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="0.1*"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
+             Title="Tasks">
+    <Grid RowDefinitions="*,Auto">
         <!-- Header info -->
         <VerticalStackLayout Grid.Row="0">
             <Label 
-                Text="Task Flow"
-                FontSize="Title"
-                FontAttributes="Bold"
-                VerticalOptions="Center" 
-                HorizontalOptions="Center" />
-            <Label 
-                Text="To-dos"
+                Text="Tasks"
                 FontSize="Title"
                 FontAttributes="None"
                 VerticalOptions="Center" 
@@ -53,6 +44,30 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
-        
+
+        <!-- Add Note button -->
+        <AbsoluteLayout Grid.Row="0" IsClippedToBounds="False">
+            <Border
+        HeightRequest="50"
+        WidthRequest="50"
+        StrokeShape="RoundRectangle 50"
+        StrokeThickness="0"
+        BackgroundColor="White"
+        Margin="0,0,20,20"
+        AbsoluteLayout.LayoutBounds="1,1,AutoSize,AutoSize"
+        AbsoluteLayout.LayoutFlags="PositionProportional">
+                <ImageButton
+            x:Name="AddTaskButton"
+            Command="{Binding AddCommand}"
+            Source="add.png"
+            BackgroundColor="Transparent"
+            HeightRequest="40"
+            WidthRequest="40"/>
+            </Border>
+        </AbsoluteLayout>
+
+        <!-- Navigation bar at the bottom -->
+        <views:NavigationBar Grid.Row="1" />
+
     </Grid>
 </ContentPage>
