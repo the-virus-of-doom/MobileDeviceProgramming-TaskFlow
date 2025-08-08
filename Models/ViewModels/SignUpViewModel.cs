@@ -87,9 +87,9 @@ namespace TaskFlow.ViewModels
             Preferences.Set("CurrentUserEmail", email);
 
             var currentWindow = Application.Current?.Windows.FirstOrDefault();
-            if (currentWindow != null)
+            if (currentWindow != null && App.ShellInstance != null)
             {
-                currentWindow.Page = new AppShell();
+                currentWindow.Page = App.ShellInstance;
             }
         }
 

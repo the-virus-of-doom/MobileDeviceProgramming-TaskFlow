@@ -6,25 +6,30 @@ namespace TaskFlow
 {
     public partial class App : Application
     {
+        public static AppShell? ShellInstance { get; private set; }
+        public static LocalDBService? DbService { get; private set; }
+
         public App()
         {
             InitializeComponent();
+            if (DbService == null)
+                DbService = new LocalDBService();
+            if (ShellInstance == null)
+                ShellInstance = new AppShell(DbService);
         }
 
         //Determine the initial page based on sign-in status
         protected override Window CreateWindow(IActivationState? activationState)
         {
-            // TODO: re-add LocalDBService
             Window window = new Window();
             if (Preferences.Get("IsSignedIn", false))
             {
-                window.Page = new AppShell();
+                window.Page = ShellInstance;
             }
             else
             {
                 window.Page = new NavigationPage(new LoginPage());
             }
-
             return window;
         }
         // Sign out logic

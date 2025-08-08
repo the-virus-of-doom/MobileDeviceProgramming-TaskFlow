@@ -5,7 +5,7 @@
 - [ ] remove testing page
 
 ### DB Service
-- [ ] re-load db service since entry point changed
+- [x] re-load db service since entry point changed
 
 ### User Settings
 - [x] connect to user pfp

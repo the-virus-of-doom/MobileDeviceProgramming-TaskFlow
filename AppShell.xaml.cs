@@ -1,10 +1,14 @@
-﻿namespace TaskFlow
+﻿using TaskFlow.Services;
+
+namespace TaskFlow
 {
     public partial class AppShell : Shell
     {
-        public AppShell()
+        private readonly LocalDBService _dbService;
+        public AppShell(LocalDBService dbService)
         {
             InitializeComponent();
+            _dbService = dbService;
             Routing.RegisterRoute(nameof(NotesPage), typeof(NotesPage));
             Routing.RegisterRoute(nameof(HomePage), typeof(HomePage));
             Routing.RegisterRoute(nameof(ViewNotePage), typeof(ViewNotePage));
