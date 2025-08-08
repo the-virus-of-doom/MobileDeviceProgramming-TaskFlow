@@ -2,7 +2,7 @@
 
 ### General
 - [ ] unify navigation settings
-- [ ] remove testing page
+- [x] remove testing page
 
 ### DB Service
 - [x] re-load db service since entry point changed

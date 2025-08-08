@@ -8,23 +8,28 @@ namespace TaskFlow;
 public partial class TodoPage : ContentPage
 {
 	public List<UserTask> UserTasks = new List<UserTask>();
-	public TodoPage()
-	{
-		InitializeComponent();
+    public TodoPage()
+    {
+        InitializeComponent();
 
-		const int demoListLength = 20;
+        // Get the current user's Id from Preferences (default to 1 if not found)
+        var currentUserId = Preferences.Get("CurrentUserId", 1);
 
-        for (int i = 0; i < demoListLength; i++)
+        // Get dbService from App
+        var dbService = App.DbService;
+        if (dbService != null)
         {
-            var temp = new UserTask();
-            temp.Name = "demo list #" + i.ToString();
-            //temp.Description = "default description";
-            UserTasks.Add(temp);
+            // Populate UserTasks asynchronously
+            Task.Run(async () =>
+            {
+                var tasks = await dbService.GetUserTasks(currentUserId);
+                MainThread.BeginInvokeOnMainThread(() =>
+                {
+                    UserTasks = tasks;
+                    Cv_TodoList.ItemsSource = UserTasks;
+                });
+            });
         }
-
-        // TODO: move UserTasks to global variable when implementing DB service
-         Cv_TodoList.ItemsSource = UserTasks;
-
     }
 
     protected override void OnAppearing()
