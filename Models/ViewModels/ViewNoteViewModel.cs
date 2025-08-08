@@ -4,6 +4,7 @@ using System.Windows.Input;
 using Microsoft.Maui.Controls;
 using System.Globalization;
 using Microsoft.Maui.Storage;
+using TaskFlow.Models;
 
 namespace TaskFlow.ViewModels
 {

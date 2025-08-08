@@ -16,6 +16,20 @@
         Title="Notes"
         ContentTemplate="{DataTemplate pages:NotesPage}"
         Route="NotesPage" />
+    <ShellContent
+        Title="To-do List"
+        ContentTemplate="{DataTemplate pages:TodoPage}"
+        Route="TodoPage" />
+    <!-- TODO: wire up calendar to side nav -->
+    <!--<ShellContent
+        Title="Calendar"
+        ContentTemplate="{DataTemplate pages:CalendarPage}"
+        Route="CalendarPage" />-->
+    <ShellContent
+        Title="Settings"
+        ContentTemplate="{DataTemplate pages:SettingsPage}"
+        Route="SettingsPage" />
+    
 
     <ShellContent Route="ViewNotePage" ContentTemplate="{DataTemplate local:ViewNotePage}" />
 

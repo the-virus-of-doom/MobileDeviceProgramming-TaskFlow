@@ -2,6 +2,7 @@ using System.Collections.ObjectModel;
 using System.Windows.Input;
 using Microsoft.Maui.Controls;
 using Microsoft.Maui.Storage;
+using TaskFlow.Models;
 
 namespace TaskFlow.ViewModels
 {
@@ -113,7 +114,7 @@ namespace TaskFlow.ViewModels
             var currentPage = currentWindow?.Page;
             if (currentPage != null)
             {
-                await currentPage.DisplayAlert("User", "User button clicked!", "OK");
+                await Shell.Current.GoToAsync(nameof(SettingsPage), false);
             }
         }
     }
