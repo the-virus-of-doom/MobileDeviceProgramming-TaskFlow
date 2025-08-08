@@ -114,8 +114,7 @@ namespace TaskFlow.ViewModels
             var currentPage = currentWindow?.Page;
             if (currentPage != null)
             {
-                
-                await currentPage.DisplayAlert("User", "User button clicked!", "OK");
+                await Shell.Current.GoToAsync(nameof(SettingsPage), false);
             }
         }
     }

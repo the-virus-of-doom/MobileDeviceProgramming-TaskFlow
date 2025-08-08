@@ -23,6 +23,7 @@
         </VerticalStackLayout>
         <VerticalStackLayout Grid.Column="1" HorizontalOptions="Center">
             <ImageButton Source="clipboard.png"
+                         Command="{Binding TodoCommand}"
                          MaximumHeightRequest="40"
                          MaximumWidthRequest="80"
                          BackgroundColor="White"/>
@@ -30,6 +31,7 @@
         </VerticalStackLayout>
         <VerticalStackLayout Grid.Column="2" HorizontalOptions="Center">
             <ImageButton Source="calendar.png"
+                         Command="{Binding CalendarCommand}"
                          MaximumHeightRequest="40"
                          MaximumWidthRequest="80"
                          BackgroundColor="White"/>
