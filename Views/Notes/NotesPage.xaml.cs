@@ -2,7 +2,7 @@ using Microsoft.Maui.Controls;
 using Microsoft.Maui.Storage;
 using System.Collections.ObjectModel;
 using System.Linq;
-using TaskFlow.Models.ViewModels.Notes;
+using TaskFlow.ViewModels;
 
 namespace TaskFlow
 {

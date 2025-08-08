@@ -3,7 +3,7 @@ using Microsoft.Maui.Controls;
 using Microsoft.Maui.Storage;
 using TaskFlow.Models;
 
-namespace TaskFlow.Models.ViewModels.Notes
+namespace TaskFlow.ViewModels
 {
     public class EditNoteViewModel : BindableObject
     {
@@ -82,10 +82,10 @@ namespace TaskFlow.Models.ViewModels.Notes
 
             var updatedNote = new NoteModel
             {
-                Title = Title,
-                Content = Content,
+                Title = this.Title,
+                Content = this.Content,
                 Timestamp = updatedTimestamp,
-                IsStarred = IsStarred
+                IsStarred = this.IsStarred
             };
 
             // Navigate to ViewNotePage with the updated note

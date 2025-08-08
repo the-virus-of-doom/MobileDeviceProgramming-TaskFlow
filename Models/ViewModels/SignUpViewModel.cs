@@ -5,7 +5,7 @@ using System.Windows.Input;
 using Microsoft.Maui.Controls;
 using Microsoft.Maui.Storage;
 
-namespace TaskFlow.Models.ViewModels.Login
+namespace TaskFlow.ViewModels
 {
     public class SignUpViewModel : INotifyPropertyChanged
     {

@@ -1,7 +1,7 @@
 using Microsoft.Maui.Controls;
 using System.Collections.Generic;
 using TaskFlow.Models;
-using TaskFlow.Models.ViewModels.Notes;
+using TaskFlow.ViewModels;
 
 namespace TaskFlow
 {
