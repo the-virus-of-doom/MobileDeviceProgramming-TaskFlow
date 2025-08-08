@@ -16,20 +16,33 @@ public partial class TodoPage : ContentPage
         var currentUserId = Preferences.Get("CurrentUserId", 1);
 
         // Get dbService from App
-        var dbService = App.DbService;
-        if (dbService != null)
+        //var dbService = App.DbService;
+        //if (dbService != null)
+        //{
+        //    // Populate UserTasks asynchronously
+        //    Task.Run(async () =>
+        //    {
+        //        var tasks = await dbService.GetUserTasks(currentUserId);
+        //        MainThread.BeginInvokeOnMainThread(() =>
+        //        {
+        //            UserTasks = tasks;
+        //            // Cv_TodoList.ItemsSource = UserTasks;
+        //        });
+        //    });
+        //}
+
+        const int demoListLength = 20;
+
+
+        for (int i = 0; i < demoListLength; i++)
         {
-            // Populate UserTasks asynchronously
-            Task.Run(async () =>
-            {
-                var tasks = await dbService.GetUserTasks(currentUserId);
-                MainThread.BeginInvokeOnMainThread(() =>
-                {
-                    UserTasks = tasks;
-                    Cv_TodoList.ItemsSource = UserTasks;
-                });
-            });
+            var temp = new UserTask();
+            temp.Name = "demo list #" + i.ToString();
+            temp.Description = "default description #" + i.ToString();
+            UserTasks.Add(temp);
         }
+
+        Cv_TodoList.ItemsSource = UserTasks;
     }
 
     protected override void OnAppearing()

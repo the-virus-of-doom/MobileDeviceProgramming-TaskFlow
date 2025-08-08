@@ -16,8 +16,6 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
-
-            <!-- "add task" button here?-->
             
             <!-- spacer for bottom -->
             <RowDefinition Height="6*"/>

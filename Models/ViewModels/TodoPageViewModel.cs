@@ -6,6 +6,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TaskFlow.Views;
 
 namespace TaskFlow.Models.ViewModels
 {
@@ -18,10 +19,20 @@ namespace TaskFlow.Models.ViewModels
         private UserTask userTask = new();
 
         [RelayCommand]
-        private void Add()
+        private async Task Add()
         {
             UserTasks.Add(UserTask);
+            var newTask = UserTask;
             UserTask = new();
+
+            Console.WriteLine("========= UserTask ========");
+            Console.WriteLine(UserTask);
+
+            // Navigate to the detail page using Shell navigation
+            await Shell.Current.GoToAsync($"userTaskDetailPage", true, new Dictionary<string, object>
+            {
+                { "UserTask", newTask }
+            });
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using TaskFlow.Services;
+using TaskFlow.Views;
 
 namespace TaskFlow
 {
@@ -16,6 +17,7 @@ namespace TaskFlow
             Routing.RegisterRoute(nameof(CreateNotePage), typeof(CreateNotePage));
             Routing.RegisterRoute(nameof(TodoPage), typeof(TodoPage));
             Routing.RegisterRoute(nameof(SettingsPage), typeof(SettingsPage));
+            Routing.RegisterRoute(nameof(UserTaskDetailPage), typeof(UserTaskDetailPage));
             // TODO: set up routing for CalendarPage
             // Routing.RegisterRoute(nameof(CalendarPage), typeof(CalendarPage));
         }
